@@ -9,5 +9,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Thread ad_thread = new Thread(new AdvertisementThread(getApplicationContext()));
+        ad_thread.run();
     }
 }
