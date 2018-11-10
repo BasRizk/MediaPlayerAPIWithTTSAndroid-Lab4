@@ -37,8 +37,19 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        releasePlayer();
+    }
+
+    protected void releasePlayer(){
+        videoView.stopPlayback();
+    }
+
     protected void initializeMediaPlayer(){
-        videoUri = Uri.parse("game_sound.wav");
+        videoView = findViewById(R.id.videoView);
+        videoUri = Uri.parse("android.resource://"+ getPackageName()+"game_sound");
         videoView.setVideoURI(videoUri);
         videoView.start();
     }
