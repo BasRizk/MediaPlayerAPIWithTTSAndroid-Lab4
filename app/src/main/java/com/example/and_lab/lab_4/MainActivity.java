@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Thread ad_thread = new Thread(new AdvertisementThread(getApplicationContext()));
+//        Thread ad_thread = new Thread(new AdvertisementThread("An ad message can be entered here", getApplicationContext()));
+//        Thread ad_thread = new Thread(new AdvertisementThread("Also ad message duration can be entered as a second argument", 7, getApplicationContext()));
         ad_thread.run();
 
         textToSpeechString = "Playback has completed";
