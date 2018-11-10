@@ -7,7 +7,7 @@ import android.os.Handler;
 
 public class AdvertisementThread implements Runnable {
 
-    CharSequence advertisement = "Basic Ad";
+    CharSequence advertisement = "Enjoying our music? subscribe for more";
     int duration = Toast.LENGTH_LONG;
     Context context;
     private final Handler handler = new Handler();
@@ -28,8 +28,8 @@ public class AdvertisementThread implements Runnable {
     }
 
     public void run() {
-        Toast.makeText(context, advertisement, duration).show();
         handler.postDelayed(this, 10000);
+        Toast.makeText(context, advertisement, duration).show();
     }
 
 }
