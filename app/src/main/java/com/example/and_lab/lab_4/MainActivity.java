@@ -1,26 +1,21 @@
 package com.example.and_lab.lab_4;
 
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.EditText;
+import android.util.Log;
 import android.widget.MediaController;
+import android.widget.SeekBar;
 import android.widget.VideoView;
-
-import org.w3c.dom.Text;
-
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
     TextToSpeech textToSpeechObj;
-    private EditText write;
     private String textToSpeechString;
     private MediaController controller;
     private VideoView videoView;
-    private Uri videoUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +29,20 @@ public class MainActivity extends AppCompatActivity {
 
         textToSpeechString = "Playback has completed";
         initializeTextToSpeech();
+
         initializeMediaPlayer();
         initializeMediaController();
+
+
+        //Customize Progress Bar Drawable
+        final int topContainerId1 = getResources().getIdentifier("mediacontroller_progress", "id", "android");
+        Log.v("VIEW", "onCreate: topContainerID1 = " + topContainerId1);
+        final SeekBar seekbar = controller.findViewById(topContainerId1);
+        seekbar.setProgressDrawable(getResources().getDrawable(R.drawable.gradient));
+
+
+        videoView.setMediaController(controller);
+        videoView.start();
 
     }
 
@@ -51,16 +58,15 @@ public class MainActivity extends AppCompatActivity {
 
     protected void initializeMediaPlayer(){
         videoView = findViewById(R.id.videoView);
-        videoUri = Uri.parse("android.resource://"+ getPackageName()+"game_sound");
-        videoView.setVideoURI(videoUri);
-        videoView.start();
+        String pathString = "android.resource://" + getPackageName() + "/raw/x_hunter";
+                Log.v("FILE_PATHS", "pathString = " + pathString);
+        videoView.setVideoURI(Uri.parse(pathString));
+        videoView.requestFocus();
     }
 
     protected void initializeMediaController(){
-        MediaController controller = new MediaController(this);
-        this.controller.setAnchorView(this.videoView);
-        controller.setMediaPlayer(this.videoView);
-        this.videoView.setMediaController(controller);
+        controller = new MediaController(this);
+        controller.setAnchorView(videoView);
     }
 
     protected void initializeTextToSpeech(){
