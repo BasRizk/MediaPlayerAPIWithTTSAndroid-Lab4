@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         textToSpeechString = "Playback has completed";
         initializeTextToSpeech();
         initializeMediaPlayer();
-//        initializeMediaController();
+        initializeMediaController();
 
     }
 
@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
 
     protected void initializeMediaController(){
         MediaController controller = new MediaController(this);
-        this.videoView = findViewById(R.id.videoView);
         this.controller.setAnchorView(this.videoView);
         controller.setMediaPlayer(this.videoView);
         this.videoView.setMediaController(controller);
