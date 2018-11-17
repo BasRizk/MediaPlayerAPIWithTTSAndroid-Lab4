@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 //        seekbar.setProgressDrawable(getResources().getDrawable(R.drawable.gradient));
 
 
-        videoView.setMediaController(controller);
+//        videoView.setMediaController(controller);
         videoView.start();
 
 //        final TextView text=(TextView)findViewById(R.id.textView);
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             int p=0;
             public void onStartTrackingTouch(SeekBar bar) {
-                controller.show(3600000);
+//                controller.show(3600000);
                 mDragging = true;
                 // By removing these pending progress messages we make sure
                 // that a) we won't update the progress while the user adjusts
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                 //post(mShowProgress);
                 mDragging = false;
                 setProgress();
-                controller.show(3000);
+//                controller.show(3000);
             }
 
         });
@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
     protected void initializeMediaController(){
         controller = new MediaController(this);
 //        controller.setMediaPlayer(mediaPlayer);
-        controller.setAnchorView(videoView);
+//        controller.setAnchorView(videoView);
     }
 
     protected void initializeTextToSpeech(){
