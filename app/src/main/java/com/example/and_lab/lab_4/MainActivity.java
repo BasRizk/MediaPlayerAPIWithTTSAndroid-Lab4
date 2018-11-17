@@ -31,8 +31,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Thread ad_thread = new Thread(new AdvertisementThread(getApplicationContext()));
-//        Thread ad_thread = new Thread(new AdvertisementThread("An ad message can be entered here", getApplicationContext()));
-//        Thread ad_thread = new Thread(new AdvertisementThread("Also ad message duration can be entered as a second argument", 7, getApplicationContext()));
         ad_thread.run();
 
         textToSpeechString = "Playback has completed";
@@ -42,15 +40,12 @@ public class MainActivity extends AppCompatActivity {
         initializeMediaController();
         mProgress = findViewById(R.id.seekBar);
 
-
-        //Customize Progress Bar Drawable
-//        final int topContainerId1 = getResources().getIdentifier("mediacontroller_progress", "id", "android");
-//        Log.v("VIEW", "onCreate: topContainerID1 = " + topContainerId1);
-//        final SeekBar seekbar = controller.findViewById(topContainerId1);
-//        seekbar.setProgressDrawable(getResources().getDrawable(R.drawable.gradient));
-
-
-//        videoView.setMediaController(controller);
+        videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                StartTextToSpeech();
+            }
+        });
         videoView.start();
 
 //        final TextView text=(TextView)findViewById(R.id.textView);
@@ -163,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void initializeMediaController(){
-        controller = new MediaController(this);
+        //controller = new MediaController(this);
 //        controller.setMediaPlayer(mediaPlayer);
 //        controller.setAnchorView(videoView);
     }
